@@ -1,0 +1,60 @@
+.foto-container{
+    position: relative;
+    width: 300px;
+    height: 300px;
+    float: left;
+}
+.foto-preview{
+    position: absolute;
+    z-index: 2;
+}
+.foto-select{
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    z-index: 10;
+    background-color: white;
+    margin-left: 10px;
+    width: 200px;
+    overflow: hidden;
+}
+.info-container{
+    float: left;
+    display: block;
+    margin-left: 20px;
+    margin-top: 20px;
+
+}
+.info-name{
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    font-size: 30px;
+}
+.info-description{
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    margin-top: 20px;
+}
+.submit{
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+}
+.ticket{
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    margin-bottom: 20px;
+}
+form{
+    display: inline-block;
+    width: 100%;
+    position: relative;
+}
+input:focus, textarea:focus, select:focus{
+    outline: none;
+}
+textarea {resize: none}
+
