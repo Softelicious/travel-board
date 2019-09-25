@@ -7,6 +7,7 @@ use App\Image;
 use App\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Tags\Tag;
 
 class SaveController extends Controller
 {
@@ -30,8 +31,15 @@ class SaveController extends Controller
             $ticket->image = 'storage/images/'.$filename;
             $ticket->name = $request->name;
             $ticket->description = $request->description;
+            $ticket->likes = 0;
             $ticket->save();
-
+            if($request->tags){
+                foreach(explode(',', $request->tags) as $tag) {
+                    $ticket->attachTag($tag);
+                }
+            }
+            $ticket->attachTag('default');
+            $ticket->save();
         }
 
 //        $images = Image::orderBy('id', 'DESC')->get();
@@ -45,6 +53,13 @@ class SaveController extends Controller
         $tickets = Ticket::orderBy('id', 'DESC')->get();
         return view('welcome')->with('tickets', $tickets);
 //        return view('layouts.app')->with('images', $images);
+    }
+    public function like(Request $request){
+        $ticket = Ticket::find($request['index']);
+        $ticket->likes = $ticket->likes+1;
+        $ticket->save();
+        $tickets = Ticket::orderBy('id', 'DESC')->get();
+        return view('welcome')->with('tickets', $tickets);
     }
 
 }

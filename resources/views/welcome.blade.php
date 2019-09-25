@@ -1,60 +1,47 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <br>
-        <br>
-        <form action="{{ url('save') }}" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-            @csrf
-            <div class="foto-container">
-                <div class="foto-preview">
-                    <img id="blah" src="https://www.utrgv.edu/_files/images/general-placeholder-image.jpg" alt="nuotrauka nepasirinkta" height="300px" width="300px" />
-                </div>
-                <div class="foto-select">
-                    <input type='file' id="image" value="pasirink" name="image" onchange="readURL(this);" accept=".png, .jpg, .jpeg" />
-                </div>
-            </div>
-            <div class="info-container">
-                <input  class="info-name" type="text" name="name" placeholder="keliones pavadinimas">
-                <textarea class="info-description" name="description" placeholder="keliones aprasymas" id="description" ></textarea>
-            </div>
-
-            <div class="submit">
-                <button type="submit" class="btn btn-success">Įkelti</button>
-            </div>
-        </form>
-        <br>
-        <hr>
-        <br>
-        @foreach ($tickets as $ticket)
-            <div class="ticket">
-                <div class="foto-container">
-                    <img src="{{$ticket['image']}}" alt="" height="300px" width="300px">
-                </div>
-                <div class="info-container">
-                    <div class="info-name">
-                        {{$ticket->name}}
+    <div class="wrapper">
+        <br/>
+            @foreach ($tickets as $index => $ticket)
+                <div class="ticket">
+                    <div class="foto-container">
+                        <img src="{{$ticket['image']}}" alt="" >
                     </div>
-                    <div class="info-description">
-                        {{$ticket->description}}
+                    <div class="info-container">
+                        <div class="info-name">
+                            {{str_limit($ticket->name, 15, '...')}}
+                        </div>
+                        <div class="info-description">
+                            {{str_limit($ticket->description, 40, '...')}}
+                        </div>
                     </div>
+                    <form id="like-form l{{$index}}" method="post" action='like'>
+                        <label for="sub{{$index}}" class="likes">
+                            <div class="far fa-heart heart"></div>
+                            <div class="like-count">{{$ticket->likes}}</div>
+                        </label>
+                        <input type="hidden" value="{{$ticket->id}}" name="index" id="index">
+                        @csrf
+                        <input style="display: none" id="sub{{$index}}" name="sub{{$index}}" type="submit">
+                    </form>
+                    @auth
+                        <div  class="submit">
+                            <div class="far fa-trash-alt del" onclick="event.preventDefault();
+                                                     document.getElementById('delete').submit();">
+                            </div>
+                            <form class="trash" action="delete" id="delete" method="post">
+                                @csrf
+                                <input name="id" type="hidden" value={{$ticket->id}}>
+{{--                                <input type="submit" value="Ištrinti" class="btn btn-danger">--}}
+                            </form>
+                        </div>
+                    @endauth
                 </div>
-{{--                <div>--}}
-{{--                    <div>Likes {{$ticket['likes']}}</div>--}}
-{{--                </div>--}}
-                @auth
-                    <div  class="submit">
-                        <form action="delete" method="post">
-                            @csrf
-                            <input name="id" type="hidden" value={{$ticket->id}}>
-                            <input type="submit" value="Ištrinti" class="btn btn-danger">
-                        </form>
-                    </div>
-                @endauth
-            </div>
-
-            <br/>
-        @endforeach
+                @if((1+$index)%5===0)
+                    <br>
+                @endif
+            @endforeach
         <br/>
     </div>
 @endsection

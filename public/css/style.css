@@ -1,12 +1,54 @@
 .foto-container{
     position: relative;
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 150px;
     float: left;
+}
+.tagss{
+    width: 100%;
+    outline: none;
+    border: none;
+}
+.foto-container img{
+    height: 150px;
+    width: 250px;
 }
 .foto-preview{
     position: absolute;
     z-index: 2;
+}
+.ticket{
+    display: block;
+    width: 250px;
+    height: 320px;
+    position: relative;
+    float: left;
+    margin: 10px;
+    background-color: white;
+}
+.submit{
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+}
+.controls-container{
+    display: inline-block;
+    width: 100%;
+}
+
+.likes{
+    position: absolute;
+    bottom: 0px;
+    left: 20px;
+    display: inline-flex;
+}
+.likes div{
+    float: left;
+}
+.likes:hover{
+    color: red;
+    cursor: pointer;
+    transition: 0.3s;
 }
 .foto-select{
     position: absolute;
@@ -22,7 +64,6 @@
     float: left;
     display: block;
     margin-left: 20px;
-    margin-top: 20px;
 
 }
 .info-name{
@@ -30,31 +71,135 @@
     border: none;
     width: 100%;
     font-size: 30px;
+    margin-top: 10px;
 }
 .info-description{
+    height: 100px;
     border: none;
     background-color: transparent;
-    width: 100%;
+    width: 90%;
     margin-top: 20px;
+    word-break: break-all;
 }
-.submit{
-    position: absolute;
-    bottom: 10px;
-    right: 20px;
+.dots-text{
+    padding: 10px;
 }
-.ticket{
-    display: inline-block;
-    width: 100%;
-    position: relative;
-    margin-bottom: 20px;
+.like-count{
+    color: black;
+    margin-bottom: 3px;
 }
-form{
-    display: inline-block;
-    width: 100%;
-    position: relative;
+.logout-btn{
+    padding: 10px;
+    color: #1f6fb2;
 }
+.logout-btn:hover{
+    cursor: pointer;
+}
+.heart{
+    margin-top: 3px;
+    margin-right: 2px;
+}
+.del{
+    color: black;
+}
+.del:hover{
+    color: red;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.dropdown-toggle::after {
+    display:none!important;
+}.wrapper{
+    display: table;
+    width: 1350px;
+    margin: 0 auto 70px auto;
+}
+/*form{*/
+/*    display: inline-block;*/
+/*    width: 100%;*/
+/*    position: relative;*/
+/*}*/
 input:focus, textarea:focus, select:focus{
     outline: none;
 }
 textarea {resize: none}
+body{
+    position: relative;
+}
+.n-navbar{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 5;
+    background-color: #84fb95;
+    background-image: linear-gradient(#8bc24a 0%, #6c9d33 74%);
+    height: 50px;
+    display: flex;
+}
+.add-item{
+    width: 170px;
+    background-color: orangered;
+    border-radius: 20px;
+    color: white;
+    font-size: 15px;
+    padding: 5px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -15px;
+    height: 35px;
+    display: flex;
+}
+.add-item:hover{
+    background-color: orange;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.add-icon{
+    margin-top: 5px;
+    vertical-align: middle;
+    flex: 1;
+}
+
+.empty{
+    flex: 1;
+}
+.bars{
+    line-height: 50px!important;
+    height: 50px;
+    margin-left: 20px;
+}
+.dots{
+    line-height: 50px!important;
+    height: 50px;
+    margin-right: 20px;
+}
+.dots:hover, .bars:hover{
+    color: grey;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.header{
+    width: 100%;
+}
+
+.brand{
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 25px;
+
+}
+.create-item{
+
+}
+.modal-dialog {
+    width: 1000px;
+}
+@media (min-width: 576px){
+    .modal-dialog {
+         max-width: initial;
+        margin: 1.75rem auto;
+    }
+}
 

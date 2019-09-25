@@ -21,3 +21,4 @@ Auth::routes();
 
 Route::get('/admin', 'AdminController@index');
 Route::post('/delete', 'AdminController@delete');
+Route::post('/like', 'SaveController@like');
