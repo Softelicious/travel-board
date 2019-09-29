@@ -18,7 +18,7 @@
                     </div>
                     <form id="like-form l{{$index}}" method="post" action='like'>
                         <label for="sub{{$index}}" class="likes">
-                            <div class="far fa-heart heart"></div>
+                            <div class="far fa-heart heart"   style="color: {{ session()->exists('id_'.$ticket->id) ? "red" : "black" }}"></div>
                             <div class="like-count">{{$ticket->likes}}</div>
                         </label>
                         <input type="hidden" value="{{$ticket->id}}" name="index" id="index">
@@ -28,7 +28,7 @@
                     @auth
                         <div  class="submit">
                             <div class="far fa-trash-alt del" onclick="event.preventDefault();
-                                                     document.getElementById('delete').submit();">
+                                                document.getElementById('delete').submit();">
                             </div>
                             <form class="trash" action="delete" id="delete" method="post">
                                 @csrf

@@ -11,12 +11,15 @@ use Spatie\Tags\Tag;
 
 class SaveController extends Controller
 {
+
+
     public function index(Request $request){
         $request->validate([
             'image'              =>  'required',
             'name' => 'required',
             'description' => 'required'
         ]);
+
 
         if($request->hasFile('image')){
             $filename = str_random(25).$request->image->getClientOriginalName();
@@ -56,10 +59,15 @@ class SaveController extends Controller
     }
     public function like(Request $request){
         $ticket = Ticket::find($request['index']);
-        $ticket->likes = $ticket->likes+1;
+        if($request->session()->exists('id_'.$request['index'])){
+            $ticket->likes = $ticket->likes-1;
+            $request->session()->forget('id_'.$request['index']);
+        }else{
+            $ticket->likes = $ticket->likes+1;
+            $request->session()->put('id_'.$request['index']);
+        }
         $ticket->save();
         $tickets = Ticket::orderBy('id', 'DESC')->get();
         return view('welcome')->with('tickets', $tickets);
     }
-
 }
