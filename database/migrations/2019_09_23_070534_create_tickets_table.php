@@ -19,7 +19,7 @@ class CreateTicketsTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('author')->nullable();
-            $table->string('tags')->nullable();
+//            $table->string('tags')->nullable();
             $table->integer('likes')->nullable();
             $table->string('likesAuthor')->nullable();
             $table->timestamps();
