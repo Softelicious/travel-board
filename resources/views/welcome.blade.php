@@ -5,9 +5,11 @@
         <br/>
             @foreach ($tickets as $index => $ticket)
                 <div class="ticket">
-                    <div class="foto-container">
-                        <img src="{{$ticket['image']}}" alt="" >
-                    </div>
+                    <a href="atostogos/{{$ticket->id}}">
+                        <div class="foto-container">
+                            <img src="{{$ticket['image']}}" alt="" >
+                        </div>
+                    </a>
                     <div class="info-container">
                         <div class="info-name">
                             {{str_limit($ticket->name, 15, '...')}}
@@ -26,21 +28,14 @@
                         <input style="display: none" id="sub{{$index}}" name="sub{{$index}}" type="submit">
                     </form>
                     @auth
-                        <div  class="submit">
-                            <div class="far fa-trash-alt del" onclick="event.preventDefault();
-                                                document.getElementById('delete').submit();">
-                            </div>
-                            <form class="trash" action="delete" id="delete" method="post">
-                                @csrf
-                                <input name="id" type="hidden" value={{$ticket->id}}>
-{{--                                <input type="submit" value="Ištrinti" class="btn btn-danger">--}}
-                            </form>
-                        </div>
+                        <form class="submit" method="post" action='delete' >
+                            <label for="del{{$index}}" class="far fa-trash-alt del"></label>
+                            <input type="hidden" value="{{$ticket->id}}" name="id" id="id">
+                            @csrf
+                            <input style="display: none" id="del{{$index}}" name="del{{$index}}" type="submit">
+                        </form>
                     @endauth
                 </div>
-                @if((1+$index)%5===0)
-                    <br>
-                @endif
             @endforeach
         <br/>
     </div>

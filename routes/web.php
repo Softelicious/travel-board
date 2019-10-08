@@ -20,5 +20,6 @@ Route::post('/save', 'SaveController@index');
 Auth::routes();
 
 Route::get('/admin', 'AdminController@index');
+Route::get('atostogos/{id}', 'SaveController@show');
 Route::post('/delete', 'AdminController@delete');
 Route::post('/like', 'SaveController@like');

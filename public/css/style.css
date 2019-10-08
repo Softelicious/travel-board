@@ -150,11 +150,7 @@ body{
     height: 35px;
     display: flex;
 }
-.add-item:hover{
-    background-color: orange;
-    transition: 0.3s;
-    cursor: pointer;
-}
+
 .add-icon{
     margin-top: 5px;
     vertical-align: middle;

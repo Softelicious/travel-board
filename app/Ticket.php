@@ -2,11 +2,14 @@
 
 namespace App;
 
+use Conner\Tagging\Taggable;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Tags\HasTags;
 
 class Ticket extends Model
 {
-    use \Spatie\Tags\HasTags;
+
+    use Taggable;
 
     public function getDataAttribute()
     {

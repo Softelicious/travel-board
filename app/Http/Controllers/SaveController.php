@@ -12,6 +12,16 @@ use Spatie\Tags\Tag;
 class SaveController extends Controller
 {
 
+    public function show($id){
+        $ticket = Ticket::with('tagged')->find($id);
+        $tags = $ticket->tagNames();
+        $data = [
+          'ticket' => $ticket,
+          'tags' => $tags
+        ];
+      return view('atostoga')->with('data', $data);
+
+    }
 
     public function index(Request $request){
         $request->validate([
@@ -38,10 +48,9 @@ class SaveController extends Controller
             $ticket->save();
             if($request->tags){
                 foreach(explode(',', $request->tags) as $tag) {
-                    $ticket->attachTag($tag);
+                    $ticket->tag($tag);
                 }
             }
-            $ticket->attachTag('default');
             $ticket->save();
         }
 
