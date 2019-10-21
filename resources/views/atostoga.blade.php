@@ -15,7 +15,7 @@
                 </div>
 
                 <div class="card-body imageContainer">
-                    <img src="{{'/'.$data['ticket']->image}}" alt="">
+                    <img src="{{'/'.$data['ticket']->image}}" alt="" class="col-md-12">
                 </div>
                 <div class="card-body">
                    <h3>{{$data['ticket']->name}}</h3>

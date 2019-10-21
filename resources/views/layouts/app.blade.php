@@ -96,9 +96,8 @@
                             <div class="foto-preview">
                                 <img id="blah" src="https://www.utrgv.edu/_files/images/general-placeholder-image.jpg" alt="nuotrauka nepasirinkta" height="300px" width="300px" />
                             </div>
-                            <div class="foto-select">
-                                <input type='file' id="image" value="pasirink" name="image" onchange="readURL(this);" accept=".png, .jpg, .jpeg" />
-                            </div>
+                            <label for="image" class="btn btn-primary col-md-5 position-absolute fixed-top mt-2 ml-2">Pasirink</label>
+                            <input class="d-none" type='file' id="image" value="pasirink" name="image" onchange="readURL(this);" accept=".png, .jpg, .jpeg" />
                         </div>
                         <div class="info-container">
                             <input  class="info-name" type="text" name="name" placeholder="keliones pavadinimas">
